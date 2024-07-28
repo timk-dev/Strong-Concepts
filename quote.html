@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000" />
+
+    <title>Quote</title>
+    <meta
+      name="Description"
+      content="Get quick, accurate quotes for your shipping needs with Strong Concepts. Our easy-to-use quote form helps us provides competitive rates for trucking services tailored to your business. Start saving today!"
+    />
+    <link rel="stylesheet preconnect" href="/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Anton&display=swap" rel="stylesheet preload">
+    <script src="/Components/Navbar/nav.js" type="text/javascript" defer></script>
+    <script src="/Components/Footer/footer.js" type="text/javascript" defer></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init({
+              publicKey: "xxxxxxx-Xx__xxxxx",
+            });
+        })();
+    </script>
+
+    <script type="text/javascript">
+
+      window.onload = function() {
+          document.getElementById('contact-form').addEventListener('submit', function(event) {
+              event.preventDefault();
+
+              const captchaResponse = grecaptcha.getResponse();
+
+              if (captchaResponse.length > 0) {
+
+                // these IDs from the previous steps
+                emailjs.sendForm('xxxxxxxx', 'xxxxxxxxx', this)
+                    .then(() => {
+                        console.log('SUCCESS!');
+
+                        Swal.fire({
+                          title: "Sent!",
+                          text: "Message Sent Successfully!",
+                          icon: "success",
+                        });
+                    }, (error) => {
+                        console.log('FAILED...', error);
+                    });
+
+                setTimeout(function(){window.location = 'sentSuccess.html'}, 2500);
+              }
+
+              else{
+                Swal.fire({
+                  title: "Error!",
+                  text: "Please Complete Captcha!!",
+                  icon: "error",
+                });
+                throw new Error("Captcha not Completed!");
+              }
+          });
+      }
+    </script>
+</head>
+
+<body>
+
+    <nav-component></nav-component>
+
+    <div class="menu-btn">    
+      <article>
+          <div class="menu-btn__burger"></div>
+      </article>
+    </div>
+
+    <section class="cont-page">
+        <nav> 
+            <ul>
+                <li><a aria-label="Go to the services page." href="/services.html"><span>Services</span></a></li>
+                <li><a aria-label="Go to the about page." href="/about.html"><span>About</span></a></li>
+                <li><a aria-label="Go to the quote page." href="/quote.html"><span>Request A Quote</span></a></li>
+                <li><a aria-label="Go to the contact page." href="/contact.html"><span>Contact</span></a></li>
+            </ul>
+
+            <article>
+                <span>Mobile, AL - 251.xxx.xxxx - xxxxxxx@gmail.com</span>
+            <article>
+        </nav>
+    </section>
+
+    <main>
+      <section class="pageTransition">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </section>
+
+      <section class="quotePage">
+        <div class="quoteText">
+          <h1>Request A Quote.</h1>
+          <p class="givePad">
+            Get a customized freight transportation quote tailored to your needs. Provide us with the details of your cargo, and we'll offer a competitive and transparent estimate to help you plan your shipment with confidence.
+          </p>
+        </div>
+
+        <article>
+          <form id="contact-form">
+            <div>
+              <label for="conmpany">Company</label>
+              <input type="text" id="company" name="company" placeholder="Company Name*" required>
+            </div>
+
+            <div class="rowMe">
+              <label for="fname">First</label>
+              <input type="text" id="fname" name="firstname" placeholder="First Name*" required>
+
+              <label for="lname">Last</label>
+              <input type="text" id="lname" name="lastname" placeholder="Last Name*" required>
+
+              <label for="email">Email</label>
+              <input type="email" id="demail" name="email" placeholder="Email*" required>
+            </div>
+          
+            <div class="rowMe radio">
+              <label>Services</label>
+
+              <div class="rowMe">
+                <input 
+                type="radio" 
+                id="transport"
+                name="picked"
+                value="Freight Transport" />
+                <label for='transport'>Freight Transport</label>
+              </div>
+              
+              <div class="rowMe">
+                <input 
+                type="radio" 
+                id="logistics"
+                name="picked"
+                value="Logistics" />
+                <label for='logistics'>Logistics</label>
+              </div>
+            </div>
+            
+            <div class="rowMe">
+              <label for="destination">Destination</label>
+              <input type="text" id="destination" name="destination" placeholder="Destination Location*" required>
+              
+              <label for="pickup">Pickup</label>
+              <input type="text" id="pickup" name="pickup" placeholder="Pickup Location*" required>
+            </div>
+
+            <div>
+              <label for="commodity">Commodity</label>
+              <input type="text" id="commodity" name="commodity" placeholder="commodity">
+            </div>
+            
+            <div>
+              <label for="message">Tell Us More</label>
+              <textarea type="text" id="message" name="message" placeholder="Additional details like, pickup date/time and arrival date/time.*" required></textarea>
+            </div>
+
+            <div class="g-recaptcha" data-sitekey="xxxxxxxxxxxxxxxxxxxxxxxxx"></div>
+            
+            <button type="submit" value="Send" name="btn-send">Submit &#129125;</button>
+
+          </form>
+        </article>
+      </section>
+    </main>
+
+    <footer-component></footer-component>
+    
+    <script rel="preload" src="/script.js"></script>
+</body>
+
+</html>
