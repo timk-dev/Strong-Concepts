@@ -1,7 +1,7 @@
 ![Strong Concepts](https://github.com/timk-dev/Strong-Concepts/blob/main/strongCont.png?raw=true)
 # Strong-Concepts
 
-Strong Concepts is a small, minimalist website for a trucking service company.
+Strong Concepts is a small, minimalist website for a trucking and logistics service company.
 
 ## :desktop_computer: Features
   * :electric_plug: Responsive
