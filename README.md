@@ -2,5 +2,8 @@
 
 Strong Concepts is a small, minimalist website for a trucking service company.
 
-## Features
-<hr></hr>
+## :desktop_computer: Features
+  * :electric_plug: Responsive
+  * :electric_plug: SEO-Friendly
+  * :electric_plug: UI Animations
+  * :electric_plug: Google's ReCaptcha
